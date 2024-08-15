@@ -55,7 +55,7 @@ from bittensor.errors import (
     PostProcessException,
     SynapseException,
 )
-from bittensor.constants import ALLOWED_DELTA, V_7_2_0
+from bittensor.constants import ALLOWED_DELTA, V_7_2_0, SECONDS_TO_NANOSECONDS
 from bittensor.threadpool import PriorityThreadPoolExecutor
 from bittensor.utils import networking
 
@@ -905,7 +905,7 @@ class axon:
                 if (
                     self.nonces.get(endpoint_key) is None
                     and synapse.dendrite.nonce
-                    <= time.time_ns() - ALLOWED_DELTA - (synapse.timeout or 0)
+                    <= time.time_ns() - ALLOWED_DELTA - (synapse.timeout * SECONDS_TO_NANOSECONDS or 0)
                 ):
                     raise Exception("Nonce is too old")
                 if (
