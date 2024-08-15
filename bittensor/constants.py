@@ -17,4 +17,5 @@
 
 
 ALLOWED_DELTA = 4000000000  # Delta of 4 seconds for nonce validation
+SECONDS_TO_NANOSECONDS = 1000000000 # multiplying float timeout (seconds) of synapse to compare with nanosecond nonce
 V_7_2_0 = 7002000
